@@ -1,6 +1,10 @@
 # Perpustakaan Mini: Exception, Assertion, Character, dan String
+# 📌 Profil
+- **Nama**: Faradilla Zahrotul Ashifa
+- **NIM**: L0325023
+- **Kelas** :B Informatika PSDKU UNS
 
-Laporan aplikasi Java **Sistem Manajemen Perpustakaan Mini** — sebuah program berbasis command line (CLI) yang tidak hanya melakukan operasi CRUD terhadap data buku dan anggota, tetapi juga menerapkan konsep-konsep inti Java: OOP (class, object, constructor, method, package), tipe data primitive & reference, struktur kontrol (kondisional & looping), serta exception handling, assertion, dan manipulasi character/String.
+Laporan aplikasi Java **Sistem Manajemen Perpustakaan Mini** sebuah program yang menerapkan konsep-konsep inti Java: OOP (class, object, constructor, method, package), tipe data primitive & reference, struktur kontrol (kondisional & looping), serta exception handling, assertion, dan manipulasi character/String.
 
 ---
 
@@ -62,7 +66,7 @@ PerpustakaanMini/
 
 ### 3.1 Package `model`
 
-Package ini hanya berisi "wadah data" — class yang menyimpan atribut dan menyediakan cara mengakses/mengubahnya (getter/setter), tanpa logika bisnis kompleks.
+Package ini  merupakan tempat data class yang menyimpan atribut dan menyediakan cara mengakses/mengubahnya (getter/setter).
 
 #### `Book.java`
 
@@ -74,7 +78,7 @@ Merepresentasikan satu entitas buku dalam koleksi perpustakaan.
 private String judul, penulis, kategori;   // reference type
 private int tahunTerbit;                   // primitive type
 private boolean tersedia;                  // primitive type (status ketersediaan)
-private int jumlahDipinjam;                 // primitive type (counter untuk analisis)
+private int jumlahDipinjam;                // primitive type (counter untuk analisis)
 ```
 
 **Constructor:**
@@ -90,7 +94,7 @@ public Book(String judul, String penulis, int tahunTerbit, String kategori) {
 }
 ```
 
-Constructor tidak hanya menerima parameter dari pemanggil, tetapi juga **menetapkan nilai awal** (`tersedia = true`, `jumlahDipinjam = 0`) yang tidak diminta dari pengguna — ini memastikan objek `Book` selalu berada dalam keadaan valid sejak awal dibuat.
+Constructor tidak hanya menerima parameter dari pemanggil, tetapi juga **menetapkan nilai awal** (`tersedia = true`, `jumlahDipinjam = 0`) yang tidak diminta dari pengguna ini memastikan objek `Book` selalu berada dalam keadaan valid sejak awal dibuat.
 
 **Manipulasi Character & String — `getJudulRapi()`:**
 
@@ -128,7 +132,7 @@ Merepresentasikan satu anggota perpustakaan.
 ```java
 private String id, nama;
 private List<String> daftarPinjaman;            // ArrayList — buku yang SEDANG dipinjam
-private int totalPinjamSepanjangWaktu;           // primitive — histori total (tidak pernah berkurang)
+private int totalPinjamSepanjangWaktu;          // primitive — histori total (tidak pernah berkurang)
 ```
 
 Dua variabel pelacak dibedakan secara sengaja: `daftarPinjaman` berubah naik-turun mengikuti transaksi pinjam/kembali, sedangkan `totalPinjamSepanjangWaktu` hanya bertambah dan menjadi dasar perhitungan laporan "anggota paling aktif".
@@ -148,7 +152,7 @@ Memastikan data id dan nama anggota tidak `null` maupun kosong. Method inilah ya
 
 ### 3.2 Package `exception`
 
-Berisi tiga **custom checked exception** (`extends Exception`), yang berarti kompiler mewajibkan setiap pemanggilnya untuk menangani (`try-catch`) atau meneruskan (`throws`) exception tersebut — tidak bisa diabaikan begitu saja.
+Berisi tiga **custom checked exception** (`extends Exception`), yang berarti kompiler mewajibkan setiap pemanggilnya untuk menangani (`try-catch`) atau meneruskan (`throws`) exception tersebut tidak bisa diabaikan begitu saja.
 
 Alasan membuat exception sendiri (bukan memakai exception bawaan Java seperti `IllegalArgumentException`) adalah agar setiap kegagalan transaksi memiliki **nama dan pesan yang spesifik** sesuai konteks bisnis perpustakaan, sehingga mudah dibedakan dan ditangani secara berbeda jika diperlukan.
 
@@ -397,13 +401,13 @@ javac -d out $(find library -name "*.java")
 java -ea -cp out library.main.MainApp
 ```
 
-> ⚠️ Tanpa flag `-ea` (*enable assertions*), baris `assert` di dalam kode **tidak akan pernah dieksekusi** oleh JVM meskipun kondisinya salah — program akan tetap berjalan seolah-olah tidak ada assertion sama sekali.
+> !! Tanpa flag `-ea` (*enable assertions*), baris `assert` di dalam kode **tidak akan pernah dieksekusi** oleh JVM meskipun kondisinya salah, program akan tetap berjalan seolah-olah tidak ada assertion sama sekali.
 
 ---
 
 ## 7. Simulasi & Kemungkinan Output Program
 
-Berikut seluruh kemungkinan output dari 7 pilihan menu utama, ditambah 2 skenario penanganan kesalahan input (menu tidak valid & input tahun bukan angka) — total 9 skenario.
+Berikut seluruh kemungkinan output dari 7 pilihan menu utama, ditambah 2 skenario penanganan kesalahan input (menu tidak valid & input tahun bukan angka) 
 
 ### Tampilan Menu Utama
 
@@ -619,4 +623,4 @@ Ini menunjukkan penerapan `switch-case` dengan blok `default` sebagai penangkap 
 
 ## 8. Penutup
 
-Program **Perpustakaan Mini** ini dirancang untuk menunjukkan penerapan konsep-konsep dasar Java secara terintegrasi dalam satu studi kasus yang realistis: mulai dari pemodelan data dengan OOP, pengelolaan koleksi dengan `ArrayList` dan `HashMap`, validasi data melalui kondisional dan looping, penanganan kesalahan melalui custom exception dan `try-catch`, pengecekan invarian program melalui `assert`, hingga manipulasi teks melalui method-method `String` dan `Character`. Struktur package yang rapi (`model`, `exception`, `service`, `main`) juga menunjukkan praktik pemisahan tanggung jawab kode yang umum digunakan dalam pengembangan perangkat lunak berskala lebih besar.
+Program **Perpustakaan Mini** ini dirancang untuk menunjukkan penerapan konsep-konsep dasar Java dalam satu studi kasus yaitu Pepustakaan Mini, mulai dari pemodelan data dengan OOP, pengelolaan koleksi dengan `ArrayList` dan `HashMap`, validasi data melalui kondisional dan looping, penanganan kesalahan melalui custom exception dan `try-catch`, pengecekan invarian program melalui `assert`, hingga manipulasi teks melalui method-method `String` dan `Character`. Struktur package yang rapi (`model`, `exception`, `service`, `main`) juga menunjukkan praktik pemisahan tanggung jawab kode yang umum digunakan dalam pengembangan perangkat lunak berskala lebih besar.
